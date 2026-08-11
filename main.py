@@ -1,7 +1,6 @@
-def criartarefa():
+def criartarefa(lista):
     while(True):
         try:
-            id = int(input("Digite o id da tarefa:"))
             nome = input("Digite o nome da tarefa:")
             while(True):
                 opc = input("Digite 0 - (não foi concluida) 1 - (concluida)\nopção:")
@@ -14,16 +13,16 @@ def criartarefa():
                 else:
                     print("opção invalida!")
                     continue
-            return [id,nome,concluida]
+            return {"id": (len(lista)+1),"nome": nome,"concluida": concluida}
         except:
                 print("erro ao cadastrar tarefa")
                 continue
 def mostrartarefas(lista):
      if not lista:
-          return "Lista vazia"
+          return print("Lista vazia")
      else:
           for i in lista:
-               print("id: {}\nNome da tarefa: {}\nConcluida:{}".format(i[0],i[1],i[2]))
+               print("id: {}\nNome da tarefa: {}\nConcluida:{}".format(i["id"],i["nome"],i["concluida"]))
      
      
 listatarefas = []
@@ -38,7 +37,7 @@ while(True):
     opc = input()
     match opc:
             case '1':
-                listatarefas.append(criartarefa())
+                listatarefas.append(criartarefa(listatarefas))
                 input("Tarefa adicionada com sucesso!\n Pressione algo para voltar para o menu...")
 
             case '2':
