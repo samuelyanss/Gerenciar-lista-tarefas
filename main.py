@@ -1,38 +1,46 @@
 
-def criartarefa(id, nome, concluida = False):
-    
-    id = int(input("Digite o id da tarefa:"))
-    nome = input("Digite o nome da tarefa:")
-
-    opc = input("Digite \n0 - se a tarefa foi concluida \n1 - se ela ja foi concluida")
-
-    if (opc == 1):
-        concluida = True
-    elif (opc == 0):
-        concluida = False
-
-
-
+def criartarefa():
+    while(True):
+        try:
+            id = int(input("Digite o id da tarefa:"))
+            nome = input("Digite o nome da tarefa:")
+            while(True):
+                opc = input("Digite 0 - (não foi concluida) 1 - (concluida)\nopção:")
+                if (opc == '1'):
+                    concluida = True
+                    break
+                elif (opc == '0'):
+                    concluida = False
+                    break
+                else:
+                    print("opção invalida!")
+                    continue
+            return [id,nome,concluida]
+        except:
+                print("erro ao cadastrar tarefa")
+                continue
 
 listatarefas = []
-print("======== Gerenciador de Tarefas =========")
-print("1 - Adicionar tarefa")
-print("2 - Listar tarefa")
-print("3 - Sair")
 
-opc = int(input())
-match opc:
+while(True):
 
-    case 1:
-        print("caso 1")
+    print("======== Gerenciador de Tarefas =========")
+    print("1 - Adicionar tarefa")
+    print("2 - Listar tarefas")
+    print("3 - Sair")
 
-    case 2:
-        print("caso 2")
+    opc = input()
+    match opc:
+            case '1':
+                listatarefas.append(criartarefa())
 
-    case 3:
-        print("caso 3")
+            case '2':
+                print(listatarefas)
 
-    case _:
-        print("caso desconhecido")
+            case '3':
+                break
+         
+            case _:
+                print("Digite uma opção valida")
         
 
