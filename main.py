@@ -1,4 +1,3 @@
-
 def criartarefa():
     while(True):
         try:
@@ -19,7 +18,14 @@ def criartarefa():
         except:
                 print("erro ao cadastrar tarefa")
                 continue
-
+def mostrartarefas(lista):
+     if not lista:
+          return "Lista vazia"
+     else:
+          for i in lista:
+               print("id: {}\nNome da tarefa: {}\nConcluida:{}".format(i[0],i[1],i[2]))
+     
+     
 listatarefas = []
 
 while(True):
@@ -33,9 +39,11 @@ while(True):
     match opc:
             case '1':
                 listatarefas.append(criartarefa())
+                input("Tarefa adicionada com sucesso!\n Pressione algo para voltar para o menu...")
 
             case '2':
-                print(listatarefas)
+                mostrartarefas(listatarefas)
+                input("digite algo para voltar para o menu...")
 
             case '3':
                 break
