@@ -9,27 +9,19 @@ def mostrartarefas(lista):
           for i in lista:
                print("id: {}\nNome da tarefa: {}\nConcluida:{}".format(i["id"],i["nome"],i["concluida"]))
 def concluirtarefa(lista):
-    while True:
-        try:
-            idtarefa = int(input("Digite o id da tarefa que você quer concluir: "))
-            encontrada = False
+    try:
+        idtarefa = int(input("Digite o id da tarefa que você quer concluir: "))
 
-            for tarefa in lista:
-                if tarefa["id"] == idtarefa:
-                    tarefa["concluida"] = True
-                    encontrada = True
-                    print(f"Tarefa {idtarefa} concluída com sucesso!")
-                    break  
+        for tarefa in lista:
+            if tarefa["id"] == idtarefa:
+                tarefa["concluida"] = True
+                print(f"Tarefa {idtarefa} concluída com sucesso!")
+                return
 
-            if not encontrada:
-                print(f"Nenhuma tarefa encontrada com o ID {idtarefa}.")
+        print(f"Nenhuma tarefa encontrada com o ID {idtarefa}.")
 
-            print("Digite 0 para voltar para o menu")
-            if idtarefa == 0:
-                break
-        except:
-            print("Digite algum id valido!")
-            continue
+    except ValueError:
+        print("Digite um ID válido!")
           
      
      
