@@ -1,28 +1,36 @@
 def criartarefa(lista):
     while(True):
-        try:
-            nome = input("Digite o nome da tarefa:")
-            while(True):
-                opc = input("Digite 0 - (não foi concluida) 1 - (concluida)\nopção:")
-                if (opc == '1'):
-                    concluida = True
-                    break
-                elif (opc == '0'):
-                    concluida = False
-                    break
-                else:
-                    print("opção invalida!")
-                    continue
-            return {"id": (len(lista)+1),"nome": nome,"concluida": concluida}
-        except:
-                print("erro ao cadastrar tarefa")
-                continue
+        nome = input("Digite o nome da tarefa:")
+        return {"id": (len(lista)+1),"nome": nome,"concluida": False}
 def mostrartarefas(lista):
      if not lista:
           return print("Lista vazia")
      else:
           for i in lista:
                print("id: {}\nNome da tarefa: {}\nConcluida:{}".format(i["id"],i["nome"],i["concluida"]))
+def concluirtarefa(lista):
+    while True:
+        try:
+            idtarefa = int(input("Digite o id da tarefa que você quer concluir: "))
+            encontrada = False
+
+            for tarefa in lista:
+                if tarefa["id"] == idtarefa:
+                    tarefa["concluida"] = True
+                    encontrada = True
+                    print(f"Tarefa {idtarefa} concluída com sucesso!")
+                    break  
+
+            if not encontrada:
+                print(f"Nenhuma tarefa encontrada com o ID {idtarefa}.")
+
+            print("Digite 0 para voltar para o menu")
+            if idtarefa == 0:
+                break
+        except:
+            print("Digite algum id valido!")
+            continue
+          
      
      
 listatarefas = []
@@ -32,7 +40,8 @@ while(True):
     print("======== Gerenciador de Tarefas =========")
     print("1 - Adicionar tarefa")
     print("2 - Listar tarefas")
-    print("3 - Sair")
+    print("3 - Concluir Tarefa")
+    print("4 - Sair")
 
     opc = input()
     match opc:
@@ -45,6 +54,10 @@ while(True):
                 input("digite algo para voltar para o menu...")
 
             case '3':
+                concluirtarefa(listatarefas)
+                input("digite algo para voltar para o menu...")
+
+            case '4':
                 break
          
             case _:
